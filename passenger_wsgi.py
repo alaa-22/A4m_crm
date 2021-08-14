@@ -1,0 +1,1 @@
+from crm.wsgi import application 

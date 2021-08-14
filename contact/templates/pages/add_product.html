@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Product</h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for=>Name *</label>
+                                    {% render_field form.name class="form-control " placeholder="product name" %}
+                                    {% if form.name.errors %}
+                                        {{ form.name.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label> Description *</label>
+                                    {% render_field form.description class="form-control " placeholder="description" %}
+                                    {% if form.description.errors %}
+                                        {{ form.description.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Photo</label>
+                                    {% render_field form.img class="form-control "  %}
+                                    {% if form.img.errors %}
+                                        {{ form.img.errors }}
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-4"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+                                <a href="{% url 'contact:list_lead' %}" class="btn btn-outline-secondary  col-3  ">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- /.card -->
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

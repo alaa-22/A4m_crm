@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{%block content%}
+ <section class="content ">
+    <div class="col-12">
+        <div class="row">
+             <div class="card col-9" >
+                            <div class="card-header">
+                                <h3 class="card-title">Company Activities Details</h3>
+
+                                <div class="card-tools">
+
+                                    <button  class="btn btn-outline-danger" id="pdf" >
+                                        Download as Pdf
+                                    </button>
+
+                                </div>
+                            </div>
+                            <div class="card-body" id="topdf">
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-lg-7 order-2 order-md-1">
+
+                      <div class="row">
+                        <div class="col-12">
+                          <h4>Recent Activity</h4>
+        {% for activity in activities %}
+                            <div class="post">
+                              <div class="user-block">
+                                  <h5 class="text-primary">{{activity.made_by}}</h5>
+
+                                                        <span class="description">{{activity.type}} - {{activity.created_at}}</span>
+                                                    </div>
+                                                    <!-- /.user-block -->
+                                                    <p>
+                                                        {{activity.details}}
+                                                    </p>
+
+
+                            </div>
+                            {% endfor %}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-5 order-1 order-md-2 ">
+                                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i>{{ company.company_name}}</h3>
+                                        <p class="text-muted ml-3">{{ company.industry}}</p>
+                                        <br>
+                                        <ul class="ml-4 mb-0 fa-ul text-muted ">
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-mobile"></i></span> Phone : {{company.mobile}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></span> Mail : {{company.email}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Office Phone : {{company.office_phone}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-fax"></i></span> Fax: {{company.fax}}</li>
+                              </ul>
+                                        <div class=" mt-4 text-muted">
+                                            <p class="text">
+                                                <b class="text-primary ">Company Contacts</b>
+                                                {% for contact in contacts %}
+                                                <a href="{% url 'contact:contact_profile' contact.id %}" class="d-block text-muted">
+                                                    <i class=" fa fa-user" ></i>
+                                                    {{contact.name}}
+                                                </a>
+                                                {% endfor %}
+                                            </p>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+             <div class="col-md-3">
+                    <div class="card card-primary">
+                      <div class="card-header">
+                        <h3 class="card-title">Filter</h3>
+                      </div>
+
+                          <form method="GET">
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label>Activity Type</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.type class="form-control"  %}
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label>Added By</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.made_by class="form-control"  %}
+                                  </div>
+                                </div>
+                                  <div class="form-group">
+                                  <label>created_at</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.created_at class="form-control" type="date" %}
+
+                                  </div>
+                                </div>
+                                </div>
+
+                                 <div class="card-footer">
+
+                                <button  type="reset" class="btn btn-secondary ">Reset</button>
+                                <button  type="submit" class="btn btn-primary ">Submit</button>
+
+                                 </div>
+                        <!-- /.form group -->
+                      </form>
+
+
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!-- /.card -->
+        </div>
+    </div>
+ </section>
+{%endblock content%}

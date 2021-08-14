@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Filter</h3>
+                    </div>
+
+                    <form method="GET">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Company Name</label>
+                                <div class="input-group date">
+                                    {% render_field myfilter.form.company class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.name class="form-control" placeholder="contact name" %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.mobile class="form-control" placeholder="phone" %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.from_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.to_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+                        </div>
+                        <!-- /.form group -->
+                    </form>
+
+
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"> All Contacts</h3>
+                        <div class="card-tools">
+                            <a href="{% url 'contact:add_contact' %}"
+                               class="btn btn-outline-primary ">Add New</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body pb-0">
+                        <div class="row d-flex align-items-stretch">
+                            {% for contact in contacts %}
+                                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            {{ contact.company.company_name }}
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="lead"><b>{{ contact.name }}</b></h2>
+                                                    <h2 class="lead"><b>{{ contact.type }}</b></h2>
+                                                    <p class="text-muted text-sm"><b>Job
+                                                        Title </b> {{ contact.job_title }} </p>
+                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                        <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-building"></i></span> Address: {{ contact.address }}
+                                                        </li>
+                                                        <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-mobile"></i></span> Phone
+                                                            : {{ contact.mobile }}</li>
+                                                        <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-envelope"></i></span> Mail
+                                                            : {{ contact.email }}</li>
+                                                        <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-phone"></i></span> Phone
+                                                            : {{ contact.office_phone }}</li>
+                                                        <li class="small"><span class="fa-li"><i
+                                                                class="fas fa-lg fa-fax"></i></span>
+                                                            fax: {{ contact.fax }}</li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="{% url 'contact:contact_profile' contact.id %}"
+                                                   class="btn btn-sm bg-teal">
+                                                    <i class="fas fa-user"></i> View Activity
+                                                </a>
+                                                <a href="{% url 'contact:edit_contact' contact.id %}"
+                                                   class="btn btn-sm btn-primary button_color">
+                                                    <i class="far fa-edit"></i> Edit
+                                                </a>
+                                                <button href="{% url 'contact:delete_contact' contact.id %}"
+                                                        data-toggle="modal" data-target="#danger"
+                                                        class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {% if contacts.has_other_pages %}
+                            <nav aria-label="Contacts Page Navigation">
+                                <ul class="pagination justify-content-center m-0">
+                                    {% if contacts.has_previous %}
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="?page={{ contacts.previous_page_number }}">
+                                            previous </a></li>
+                                    {% endif %}
+                                    {% for i in contacts.paginator.page_range %}
+                                        {% if contacts.number == i %}
+                                            <li class="page-item active"><a class="page-link"
+                                                                            href="?page={{ i }}"><span>{{ i }}</span>
+                                            </a></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ i }}"><span>{{ i }}</span> </a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if contacts.has_next %}
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="?page={{ contacts.next_page_number }}"> next</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+{% endblock content %}

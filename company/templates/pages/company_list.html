@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter</h3>
+                        </div>
+                        <form method="GET">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Company Name</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.company_name class="form-control" placeholder="company name" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.mobile class="form-control" placeholder="phone" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Added By</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.added_by class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.from_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.to_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+                            <!-- /.form group -->
+                        </form>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"> All Accounts</h3>
+                            <div class="card-tools">
+                                <a href="{% url 'company:add_company' %}  " class="btn btn-outline-primary">Add
+                                    New</a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Added By</th>
+                                    <th>Created At</th>
+                                    <th width="5%">Edit</th>
+                                    <th width="5%">Delete</th>
+                                </tr>
+                                {% for company in company %}
+                                    <tr>
+                                        <td><a class=""
+                                               href="{% url 'company:company_profile' company.id %}">{{ company.company_name }}</a>
+                                        </td>
+                                        <td>{{ company.added_by }}</td>
+                                        <td>{{ company.created_at }}</td>
+
+                                            <td><a href="{% url 'company:edit_company' company.id %}"
+                                                   class="btn btn-primary"><i
+                                                    class="fa fa-edit"></i></a></td>
+                                            <td>
+                                                <button href="{% url 'company:delete_company'  company.id %}"
+                                                        class="btn btn-danger"
+                                                        data-toggle="modal" data-target="#danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+
+                            {% if company.has_other_pages %}
+                                <nav aria-label="Contacts Page Navigation">
+                                    <ul class="pagination justify-content-center m-0">
+                                        {% if company.has_previous %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ company.previous_page_number }}">
+                                                previous </a></li>
+                                        {% endif %}
+                                        {% for i in company.paginator.page_range %}
+                                            {% if company.number == i %}
+                                                <li class="page-item active"><a class="page-link"
+                                                                                href="?page={{ i }}"><span>{{ i }}</span>
+                                                </a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ i }}"><span>{{ i }}</span> </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if company.has_next %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ company.next_page_number }}">
+                                                next</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

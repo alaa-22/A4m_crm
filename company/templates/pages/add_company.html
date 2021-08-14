@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+    <section class="content ">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Add Company</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                </div>
+            </div>
+            <form class=" " action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body row">
+                    <div class="col-md-6  pt-3 px-5 ">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label> Company Name *</label>
+                            </div>
+                            <div class="col-md-8 ">
+                                <div>
+                                    {% render_field form.company_name class="form-control" placeholder="enter company name" %}
+                                    {% if form.company_name.errors %}
+                                        {{ form.company_name.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-4 form-group">
+                                <label>
+                                    Mobile *
+                                </label>
+                            </div>
+                            <div class="col-sm-8">
+                                {% render_field form.mobile class="form-control" placeholder="enter company mobile" %}
+                                {% if form.mobile.errors %}
+                                    {{ form.mobile.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-4">
+                                <label>
+                                    Office Phone
+                                </label>
+                            </div>
+                            <div class="col-sm-8 form-group ">
+                                {% render_field form.office_phone class="form-control" placeholder="enter company office phone" %}
+                                {% if form.office_phone.errors %}
+                                    {{ form.office_phone.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-4">
+                                <label>
+                                    Fax
+                                </label>
+                            </div>
+                            <div class="col-sm-8 form-group">
+                                {% render_field form.fax class="form-control" placeholder="enter company fax" %}
+                                {% if form.fax.errors %}
+                                    {{ form.fax.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row  ">
+                            <div class="col-sm-4 ">
+                                <label>
+                                    Email *
+                                </label>
+                            </div>
+                            <div class="col-sm-8 form-group">
+
+                                {% render_field form.email class="form-control" placeholder="enter company Email" %}
+                                {% if form.email.errors %}
+                                    {{ form.email.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-4 form-group">
+                                <label>
+                                    Employees
+                                </label>
+                            </div>
+                            <div class="col-sm-8 Em">
+                                {% render_field form.employees_numbers class="form-control" placeholder="employees numbers" %}
+                                {% if form.employees_numbers.errors %}
+                                    {{ form.employees_numbers.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-sm-4 form-group">
+                                <label>
+                                    Social Pages
+                                </label>
+                            </div>
+                            <div class="col-sm-8 Em">
+                                {% render_field form.social_page class="form-control" placeholder="social pages" %}
+                                {% if form.social_page.errors %}
+                                    {{ form.social_page.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6  pt-3 pt-3 px-5 ">
+
+                        <div class="row  form-group">
+                            <div class="col-md-4">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-8">
+                                {% render_field form.address class="form-control" placeholder="enter address" %}
+                                {% if form.address.errors %}
+                                    {{ form.address.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row  form-group">
+                            <div class="col-md-4">
+                                <label>
+                                    Street
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                {% render_field form.street class="form-control" placeholder="street" %}
+                                {% if form.street.errors %}
+                                    {{ form.street.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row  form-group">
+                            <div class="col-md-4">
+                                <label>
+                                    City
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                {% render_field form.city class="form-control" placeholder="city" %}
+                                {% if form.city.errors %}
+                                    {{ form.city.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row  form-group">
+                            <div class="col-md-4">
+                                <label>
+                                    State
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                {% render_field form.state class="form-control" placeholder="state" %}
+                                {% if form.state.errors %}
+                                    {{ form.state.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            <div class="col-12">
+                <div class="row   card-footer  ">
+
+                    <div class="col-md-5"></div>
+                    <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+                    <a href="{% url 'company:company_home' %}" class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                </div>
+                </div>
+            </form>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+
+{% endblock content %}
+
+
+
+

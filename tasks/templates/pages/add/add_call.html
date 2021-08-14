@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Call Info</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for=>Contact *</label>
+                                    {% render_field form.contact_person class="form-control custom-select" placeholder="Username" %}
+                                    {% if form.contact_person.errors %}
+                                        {{ form.contact_person.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Date</label>
+                                    {% render_field form.date class="form-control " type="date" %}
+                                    {% if form.date.errors %}
+                                        {{ form.date.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Subject</label>
+                                    {% render_field form.subject class="form-control " placeholder="Subject" %}
+                                    {% if form.subject.errors %}
+                                        {{ form.subject.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>About Product *</label>
+                                    {% render_field form.about_product class="form-control " placeholder="About product" %}
+                                    {% if form.about_product.errors %}
+                                        {{ form.about_product.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Details *</label>
+                                    {% render_field form.details class="form-control " placeholder="Call Details" %}
+                                    {% if form.details.errors %}
+                                        {{ form.details.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-md-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+
+                                <a href="{% url 'tasks:list_call' %}"
+                                   class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.card -->
+
+
+            </form>
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter</h3>
+                        </div>
+
+                        <form method="GET">
+                            <div class="card-body">
+
+
+                                <div class="form-group">
+                                    <label>Contact Person</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.contact_person class="form-control" %}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="input-group date">
+                                            {% render_field myfilter.form.date class="form-control" type="date" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Meet By</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.made_by class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.from_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.to_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+
+                            <!-- /.form group -->
+                        </form>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Meeting Info Table</h3>
+
+                            <div class="card-tools">
+                                <a href="{% url 'tasks:add_meeting' %}"
+                                   class="btn btn-outline-primary">Add New</a>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th width="">#</th>
+                                    <th width="">User</th>
+                                    <th width="">Company</th>
+                                    <th width="">Contact</th>
+                                    <th width="">Date</th>
+                                    <th width="5%">View</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    {% for meeting in meeting %}
+                                        <tr>
+                                            <td width="">{{ meeting.id }}</td>
+                                            <td width="">{{ meeting.made_by }}</td>
+                                            <td width="">{{ meeting.contact_person.company }}</td>
+                                            <td width="">{{ meeting.contact_person }}</td>
+                                            <td width="">{{ meeting.date }}</td>
+
+                                            <td width="5%"><a href="{% url 'tasks:meeting_view' meeting.id %}"
+                                                              class="btn btn-primary"><i
+                                                    class="fas fa-eye"></i></a></td>
+
+                                        </tr>
+
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            {% if meeting.has_other_pages %}
+                                <nav aria-label="Contacts Page Navigation">
+                                    <ul class="pagination justify-content-center m-0">
+                                        {% if meeting.has_previous %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ meeting.previous_page_number }}">
+                                                previous </a></li>
+                                        {% endif %}
+                                        {% for i in meeting.paginator.page_range %}
+                                            {% if meeting.number == i %}
+                                                <li class="page-item active"><a class="page-link"
+                                                                                href="?page={{ i }}"><span>{{ i }}</span>
+                                                </a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ i }}"><span>{{ i }}</span> </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if meeting.has_next %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ meeting.next_page_number }}">
+                                                next</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}

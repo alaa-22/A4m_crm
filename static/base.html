@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf.8" />
+    <title> project </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel='stylesheet' href='bootstrap/bootstrap.min.css'>
+    <link rel='stylesheet' href='bootstrap/font-awesome.css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/company.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container ">
+        {%block navbar%} {%endblock navbar%}
+
+
+        <div class="shadow  my-4">
+            <header class=" row  ">
+                <h1 class="col-md-12 mt-4 ml-4 "> Company Profile</h1>
+            </header>
+            <form class="my-4 row">
+                <div class="col-md-6  pt-3 px-5 ">
+
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label> Company Name </label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <input class="form-control" type="text" value="Daffiodil international university">
+                        </div>
+                    </div>
+
+
+                    <div class="row part form-group">
+                        <div class="col-md-4">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="4" class="form-control input_border">Sukrabaad , Mirpur Road , Dhaka</textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="row part form-group">
+                        <div class="col-md-4">
+                            <label>
+                                street
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control " type="text" value="Dhanmondi">
+                        </div>
+                    </div>
+
+                    <div class="add">
+                        <div class="row part form-group">
+                            <div class="col-md-4">
+                                <label>
+                                    city
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" value="Dhaka">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row part form-group">
+                        <div class="col-md-4">
+                            <label>
+                                state
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" value="Dhaka">
+
+                        </div>
+                    </div>
+
+                    <div class="add">
+                        <div class="row part form-group">
+                            <div class="col-md-4">
+                                <label>
+                                    post code
+
+                                </label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" value="1207">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row part form-group">
+                        <div class="col-sm-4">
+                            <label>
+                                Country *
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="options ">
+                                <select class="form-control input_border" name="country">
+                                    <option value="1">Bangladesh </option>
+                                    <option value="2">cairo </option>
+                                    <option value="3">Alex</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6  pt-3 pt-3 px-5 ">
+                    <div class="row part">
+                        <div class="col-sm-4 form-group">
+                            <label>
+                                Mobile *
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" value="01671909000">
+                        </div>
+                    </div>
+
+                    <div class="add">
+                        <div class="row part">
+                            <div class="col-sm-4">
+                                <label>
+                                    Office Phone
+                                </label>
+                            </div>
+                            <div class="col-sm-8 form-group ">
+                                <div class="input-group mb-2 ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text div_color"><span class="fas fa-phone-alt  "></span>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row part">
+                        <div class="col-sm-4">
+                            <label>
+                                Fax
+                            </label>
+                        </div>
+                        <div class="col-sm-8 form-group">
+                            <input class="form-control" type="text" value="33333">
+                        </div>
+                    </div>
+                    <div class="row part">
+                        <div class="col-sm-4">
+                            <label>
+                                Email *
+                            </label>
+                        </div>
+                        <div class="col-sm-8 Em">
+                            <input class="form-control" type="text" value="crm@diu.edu.bd">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </form>
+            <div class="row pb-4  ">
+                <div class="row col-12 m-auto pl-5  ">
+                    <div class="col-5"></div>
+                    <button type="submit" class="btn  col-3 mx-3   button_color  ">Update</button>
+
+                    <button type="submit" class="btn btn-outline-secondary  col-3  ">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="bg-light text-center text-lg-start ">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2020 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+    <script src="js/jquery-3.2.1.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+</body>
+
+</html>

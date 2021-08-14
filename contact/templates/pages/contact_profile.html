@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{%block content%}
+ <section class="content ">
+    <div class="col-12">
+        <div class="row">
+             <div class="card col-9">
+                            <div class="card-header">
+                                <h3 class="card-title">Contact Activity Details</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                      <i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-lg-7 order-2 order-md-1">
+
+                      <div class="row">
+                        <div class="col-12">
+                            <h3 class ="text-primary">{{contact.name}}</h3>
+                          <h4>Recent Activity</h4>
+        {% for activity in activities %}
+                            <div class="post">
+                              <div class="user-block">
+                                  <h5 class="text-primary">{{activity.made_by}}</h5>
+
+                                                        <span class="description">{{activity.type}} - {{activity.created_at}}</span>
+                                                    </div>
+                                                    <!-- /.user-block -->
+                                                    <p>
+                                                        {{activity.details}}
+                                                    </p>
+
+
+                            </div>
+                            {% endfor %}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-5 order-1 order-md-2 ">
+                                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i>{{ company.company_name}}</h3>
+                                        <h5 class="text-primary text-center mt-3">contact details</h5>
+
+                                        <ul class="ml-4 mb-0 fa-ul text-muted ">
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: {{contact.address}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-mobile"></i></span> Phone : {{contact.mobile}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></span> Mail : {{contact.email}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Office Phone : {{contact.office_phone}}</li>
+                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-fax"></i></span> Fax: {{contact.fax}}</li>
+                              </ul>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+             <div class="col-md-3">
+                    <div class="card card-primary">
+                      <div class="card-header">
+                        <h3 class="card-title">Filter</h3>
+                      </div>
+
+                          <form method="GET">
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label>Activity Type</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.type class="form-control"  %}
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label>Added By</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.made_by class="form-control"  %}
+                                  </div>
+                                </div>
+                                  <div class="form-group">
+                                  <label>created_at</label>
+                                  <div class="input-group date" >
+                                      {% render_field myfilter.form.created_at class="form-control" type="date" %}
+
+                                  </div>
+                                </div>
+                                </div>
+
+                                 <div class="card-footer">
+
+                                <button  type="reset" class="btn btn-secondary ">Reset</button>
+                                <button  type="submit" class="btn btn-primary ">Submit</button>
+
+                                 </div>
+                        <!-- /.form group -->
+                      </form>
+
+
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!-- /.card -->
+        </div>
+    </div>
+ </section>
+{%endblock content%}

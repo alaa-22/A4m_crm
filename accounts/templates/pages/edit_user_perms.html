@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- jquery validation -->
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Role</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"
+                                        data-toggle="tooltip" title="Remove">
+                                    <i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" value="{{ user.username }}" class="form-control">
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        {% for perm in perms %}
+
+                                            <div class="icheck-primary col-4">
+                                                {% if perm.id in user_perms %}
+
+                                                    <input type="checkbox" name="permissions[]" checked
+                                                           value="{{ perm.id }}">
+                                                {% else %}
+                                                    <input type="checkbox" name="permissions[]" value="{{ perm.id }}">
+                                                {% endif %}
+                                                <label>{{ perm.name }}</label>
+                                            </div>
+
+                                        {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                             <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-md-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Edit</button>
+
+                                <a href="{% url 'account:list_user_perms' %}"
+                                   class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+            </div>
+            <!--/.col (right) -->
+        </div>
+        {{ perm }}
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="card ">
+            <div class="card-header">
+                <h3 class="card-title">General Info</h3>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body row">
+                    <div class="form-group col-md-6">
+                        <label>First Name</label>
+                        {% render_field userform.first_name class="form-control" placeholder="First name" %}
+                        {% if userform.first_name.errors %}
+                            {{ userform.first_name.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        {% render_field userform.last_name class="form-control" placeholder="Last name" %}
+                        {% if userform.last_name.errors %}
+                            {{ userform.last_name.errors }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Username</label>
+                        {% render_field userform.username class="form-control" placeholder="Username" %}
+                        {% if userform.username.errors %}
+                            {{ userform.username.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        {% render_field userform.email class="form-control" placeholder="email" %}
+                        {% if userform.email.errors %}
+                            {{ userform.email.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Password</label>
+                        <input name="password" class="form-control" type="password" placeholder="password">
+                        {% if userform.password1.errors %}
+                            {{ userform.password1.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Password Confirmation</label>
+                        <input name="confirm_password" class="form-control" type="password" placeholder="confirm password">
+                        {% if userform.password2.errors %}
+                            {{ userform.password2.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Role</label>
+                        {% render_field userform.groups class="form-control " placeholder="Username" %}
+                        {% if userform.groups.errors %}
+                            {{ userform.groups.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Is Active</label>
+                        {% render_field userform.is_active class="form-control " placeholder="Username" %}
+                    </div>
+                {% if request.user.is_superuser %}
+                    <div class="form-group col-md-6">
+                        <label>Is Superuser</label>
+                        {% render_field userform.is_superuser class="form-control " placeholder="Username" %}
+                    </div>
+                {% endif %}
+                </div>
+                <div class="col-12">
+                    <div class=" card-footer row">
+                        <div class="col-md-5"></div>
+                        <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Edit</button>
+
+                        <a href="{% url 'account:list_user' %}"
+                           class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </section>
+{% endblock content %}

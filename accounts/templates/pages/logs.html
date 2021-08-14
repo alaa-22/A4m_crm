@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter</h3>
+                        </div>
+
+                        <form method="GET">
+                            <div class="card-body">
+
+
+                                <div class="form-group">
+                                    <label>User</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.user class="form-control" %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Action</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.action class="form-control" %}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="card-footer">
+
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+
+                            <!-- /.form group -->
+                        </form>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Log info Table</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th width="">#</th>
+                                    <th width="">User</th>
+                                    <th width="">action</th>
+                                    <th width="">ip address</th>
+                                    <th width="">details</th>
+
+                                </tr>
+                                </thead>
+                                {% for log in logs %}
+                                    <tr>
+
+                                        <td width="">{{ log.id }}</td>
+                                        <td width="">{{ log.user }}</td>
+                                        <td width="">{{ log.action }}</td>
+                                        <td width="">{{ log.ip_address }}</td>
+                                        <td width=""><a href="{% url 'account:system_log_details' log.id %}"><i class="fa fa-eye"></i></a>
+                                        </td>
+
+
+                                    </tr>
+
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            {% if logs.has_other_pages %}
+                                <nav aria-label="Contacts Page Navigation">
+                                    <ul class="pagination justify-content-center m-0">
+                                        {% if logs.has_previous %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ logs.previous_page_number }}">
+                                                previous </a></li>
+                                        {% endif %}
+                                        {% for i in logs.paginator.page_range %}
+                                            {% if logs.number == i %}
+                                                <li class="page-item active"><a class="page-link"
+                                                                                href="?page={{ i }}"><span>{{ i }}</span>
+                                                </a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ i }}"><span>{{ i }}</span> </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if logs.has_next %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ logs.next_page_number }}"> next</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add note</h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for=>Contact</label>
+                                    {% render_field form.contact_person class="form-control custom-select" placeholder="Username" %}
+                                    {% if form.contact_person.errors %}
+                                        {{ form.contact_person.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Note *</label>
+                                    {% render_field form.note class="form-control " placeholder="add a note" %}
+                                    {% if form.note.errors %}
+                                        {{ form.note.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-12 card-footer">
+                            <button type="reset" class="btn btn-secondary ">Reset</button>
+                            <button type="submit" class="btn btn-outline-primary ">Submit</button>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+            </form>
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

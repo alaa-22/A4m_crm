@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter</h3>
+                        </div>
+                        <form method="GET">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Company Name</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.company_name class="form-control" placeholder="company name" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.mobile class="form-control" placeholder="phone" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Added By</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.added_by class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.from_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.to_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+                            <!-- /.form group -->
+                        </form>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"> All Accounts</h3>
+                            <div class="card-tools">
+                                <button class="btn btn-outline-danger" id="pdf">
+                                    Download As PDF
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" id="topdf">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Added By</th>
+                                    <th>Created At</th>
+
+                                </tr>
+                                {% for company in company %}
+                                    <tr>
+                                        <td>{{ company.company_name }}</td>
+                                        <td>{{ company.added_by }}</td>
+                                        <td>{{ company.created_at }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}

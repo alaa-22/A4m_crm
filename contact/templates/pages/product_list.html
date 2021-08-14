@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"> All Products</h3>
+                        <div class="card-tools">
+                            <a href="{% url 'contact:add_product' %}"
+                               class="btn btn-outline-primary ">Add New</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body pb-0">
+                        <div class="row d-flex align-items-stretch">
+                            {% for product in products %}
+                                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-primary border-bottom-0">
+                                            {{ product.name }}
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <div class="ml-2 mb-0  ">
+                                                        {{ product.description}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    {% if product.img %}
+                                                        <img src="{{ product.img.url }}" alt="" class=" img-fluid">
+                                                    {% else %}
+                                                        <img class="" style="max-height: 70px"
+                                                             src="https://via.placeholder.com/128"
+                                                             alt="">
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {% if products.has_other_pages %}
+                            <nav aria-label="products Page Navigation">
+                                <ul class="pagination justify-content-center m-0">
+                                    {% if products.has_previous %}
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="?page={{ products.previous_page_number }}">
+                                            previous </a></li>
+                                    {% endif %}
+                                    {% for i in products.paginator.page_range %}
+                                        {% if products.number == i %}
+                                            <li class="page-item active"><a class="page-link"
+                                                                            href="?page={{ i }}"><span>{{ i }}</span>
+                                            </a></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ i }}"><span>{{ i }}</span> </a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if products.has_next %}
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="?page={{ products.next_page_number }}"> next</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+{% endblock content %}

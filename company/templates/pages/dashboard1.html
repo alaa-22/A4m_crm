@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content ">
+        <div class="col-12">
+            {% if 'admins' in user.groups.all.0.name or request.user.is_superuser %}
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ users }}</h3>
+                                <p>Total Users</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person"></i>
+                            </div>
+                            <a href="{% url 'account:list_user' %}" class="small-box-footer">More Info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ company_count }}</h3>
+
+                                <p>Total Accounts</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-home"></i>
+                            </div>
+                            <a href="{% url 'company:company_home' %}" class="small-box-footer">More Info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ contact }}</h3>
+                                <p>Total Contact</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-contacts"></i>
+                            </div>
+                            <a href="{% url 'contact:contact_home' %}" class="small-box-footer">More Info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ lead }}</h3>
+                                <p>Total Leads</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-contacts"></i>
+                            </div>
+                            <a href="{% url 'contact:list_lead' %}" class="small-box-footer">More Info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="card ">
+                        <div class="card-header">
+                            <a class="card-title" href="{% url 'tasks:Task list' %}">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                Tasks
+                            </a>
+
+                            <div class="card-tools">
+                                <!--{% if tasks.has_other_pages %}
+                                    <ul class="pagination pagination-sm">
+                                        {% if tasks.has_previous %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ tasks.previous_page_number }}">
+                                                previous </a></li>
+                                        {% endif %}
+                                        {% for i in tasks.paginator.page_range %}
+                                            {% if tasks.number == i %}
+                                                <li class="page-item active"><a class="page-link"
+                                                                                href="?page={{ i }}"><span>{{ i }}</span>
+                                                </a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ i }}"><span>{{ i }}</span> </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if tasks.has_next %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ tasks.next_page_number }}">
+                                                next</a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                {% endif %}-->
+                            </div>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <ul class="todo-list">
+                                {% for task in tasks %}
+                                    <li class="mb-2">
+
+                                        <span class="text">{{ task.task_name }}</span>
+                                        <!-- Emphasis label -->
+                                        <!-- General tools such as edit or delete-->
+                                        <div class="tools">
+                                            <a href="{% url 'tasks:view Task' task.id %}"><i
+                                                    class="fas fa-edit"></i></a>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+
+                        <!-- /.card-body -->
+                        {% if 'admins' in user.groups.all.0.name or request.user.is_superuser %}
+                            <div class="card-footer clearfix">
+                                <a href="{% url "tasks:add Task" %}" type="button"
+                                   class="btn btn-info float-right"><i
+                                        class="fas fa-plus"></i>
+                                    Add Task
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                Reminders
+                            </h3>
+
+                            <div class="card-tools">
+                                <!--{% if reminders.has_other_pages %}
+                                    <ul class="pagination pagination-sm">
+                                        {% if reminders.has_previous %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ reminders.previous_page_number }}">
+                                                previous </a></li>
+                                        {% endif %}
+                                        {% for i in reminders.paginator.page_range %}
+                                            {% if reminders.number == i %}
+                                                <li class="page-item active"><a class="page-link"
+                                                                                href="?page={{ i }}"><span>{{ i }}</span>
+                                                </a></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ i }}"><span>{{ i }}</span> </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if reminders.has_next %}
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="?page={{ reminders.next_page_number }}">
+                                                next</a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                {% endif %}-->
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <ul class="todo-list">
+                                {% for reminder in reminders %}
+                                    <li>
+                                        <span class="text">{{ reminder.task_name }}</span>
+                                        <!-- Emphasis label -->
+                                        <!-- General tools such as edit or delete-->
+                                        <div class="tools">
+                                            <a href="{% url 'tasks:view Task' reminder.id %}"><i
+                                                    class="fas fa-edit"></i></a>
+                                        </div>
+                                    </li>
+
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+                        <div class="card-footer clearfix">
+                            <a href="{% url "tasks:add_remiend" %}" type="button" class="btn btn-info float-right"><i
+                                    class="fas fa-plus"></i>
+                                Add Reminder
+                            </a>
+                        </div>
+                        <!-- /.card-body -->
+
+
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart1" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['january', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'total number of created companies',
+
+                    data: [{% for key,value in arr.items %}
+                        {{value}},
+                    {% endfor %}],
+
+                    fill: false,
+
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['january', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'total number of created contacts',
+
+                    data: [{% for key,value in array.items %}
+                        {{value}},
+                    {% endfor %}],
+
+                    fill: false,
+
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock js %}

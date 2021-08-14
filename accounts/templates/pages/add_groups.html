@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- jquery validation -->
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Role</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i></button>
+
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    {% render_field groupform.name class="form-control" placeholder="Group name" %}
+                                    {% if groupform.name.errors %}
+                                        {{ groupform.name.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        {% for perm in perms %}
+
+                                            <div class="icheck-primary col-4">
+                                                <input type="checkbox" name="permissions[]" value="{{ perm.id }}">
+                                                <label>{{ perm.name }}</label>
+                                            </div>
+
+                                        {% endfor %}</div>
+
+                                </div>
+                            </div>
+                             <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-md-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+
+                                <a href="{% url 'account:list_group' %}"
+                                   class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+            </div>
+            <!--/.col (right) -->
+        </div>
+        {{ perm }}
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}
+

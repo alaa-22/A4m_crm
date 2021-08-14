@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Filter</h3>
+                        </div>
+
+                        <form method="GET">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label> name</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.name class="form-control" placeholder="lead name" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.mobile class="form-control" placeholder="phone" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Added By</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.added_by class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.type class="form-control" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.from_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <div class="input-group date">
+                                        {% render_field myfilter.form.to_date class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+
+                                <button type="reset" class="btn btn-outline-secondary ">Reset</button>
+                                <button type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                            </div>
+                            <!-- /.form group -->
+                        </form>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"> All Leads</h3>
+                            <div class="card-tools">
+                                <button class="btn btn-outline-danger" id="pdf">
+                                    Download As PDF
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" id="topdf">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Added by</th>
+                                    <th>Created at</th>
+                                    <th>Last Activity</th>
+
+                                    <th width="5%">edit</th>
+                                    <th width="5%">Delete</th>
+                                </tr>
+                                {% for lead in leads %}
+                                    {% ifequal lead.type 'contact' %}
+                                        <tr class="bg-warning">
+                                            <td>{{ lead.name }}</td>
+                                            <td>{{ lead.added_by }}</td>
+                                            <td>{{ lead.created_at }}</td>
+                                            <td>{{ lead.created_at }}</td>
+
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td>{{ lead.name }}</td>
+                                            <td>{{ lead.added_by }}</td>
+                                            <td>{{ lead.created_at }}</td>
+                                            <td>{{ lead.created_at }}</td>
+
+                                        </tr>
+                                    {% endifequal %}
+                                {% endfor %}
+
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}

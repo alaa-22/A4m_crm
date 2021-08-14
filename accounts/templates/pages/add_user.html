@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="card ">
+            <div class="card-header">
+                <h3 class="card-title">Add New User</h3>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body row">
+
+                    <div class="form-group col-md-6">
+                        <label>First Name *</label>
+                        {% render_field userform.first_name class="form-control" placeholder="First name" required="required" %}
+                        {% if userform.first_name.errors %}
+                            {{ userform.first_name.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last Name *</label>
+                        {% render_field userform.last_name class="form-control" placeholder="Last name" required="required" %}
+                        {% if userform.last_name.errors %}
+                            {{ userform.last_name.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Username *</label>
+                        {% render_field userform.username class="form-control" placeholder="Username" %}
+                        {% if userform.username.errors %}
+                            {{ userform.username.errors }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Email *</label>
+                        {% render_field userform.email class="form-control" placeholder="email" %}
+                        {% if userform.email.errors %}
+                            {{ userform.email.errors }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Password</label>
+                        {% render_field userform.password1 class="form-control " placeholder="password" %}
+                        {% if userform.password1.errors %}
+                            {{ userform.password1.errors }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Password Confirmation</label>
+                        {% render_field userform.password2 class="form-control " placeholder="confirm password" %}
+                        {% if userform.password2.errors %}
+                            {{ userform.password2.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Role</label>
+                        {% render_field userform.groups class="form-control " placeholder="Username" %}
+                        {% if userform.groups.errors %}
+                            {{ userform.groups.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Is Active</label>
+                        {% render_field userform.is_active class="form-control " placeholder="Username" %}
+                        {% if userform.groups.errors %}
+                            {{ userform.groups.errors }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class=" card-footer row">
+                        <div class="col-md-5"></div>
+                        <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+
+                        <a href="{% url 'account:list_user' %}"
+                           class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </section>
+{% endblock content %}

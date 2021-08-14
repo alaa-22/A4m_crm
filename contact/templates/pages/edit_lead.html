@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Lead</h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for=>Name *</label>
+                                    {% render_field form.name class="form-control " placeholder="contact name" %}
+                                    {% if form.name.errors %}
+                                        {{ form.name.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label> Mobile *</label>
+                                    {% render_field form.mobile class="form-control " placeholder="mobile" %}
+                                    {% if form.mobile.errors %}
+                                        {{ form.mobile.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Office Phone</label>
+                                    {% render_field form.office_phone class="form-control " placeholder="office phone" %}
+                                    {% if form.office_phone.errors %}
+                                        {{ form.office_phone.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Fax</label>
+                                    {% render_field form.fax class="form-control " placeholder="fax" %}
+                                    {% if form.fax.errors %}
+                                        {{ form.fax.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Email *</label>
+                                    {% render_field form.email class="form-control " placeholder="Email" %}
+                                    {% if form.email.errors %}
+                                        {{ form.email.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Social Account</label>
+                                    {% render_field form.social_account class="form-control " placeholder="social account" %}
+                                    {% if form.social_account.errors %}
+                                        {{ form.social_account.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Notes *</label>
+                                    {% render_field form.notes class="form-control " placeholder="notes" %}
+                                    {% if form.notes.errors %}
+                                        {{ form.notes.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    <div class="col-12">
+                        <div class="row card-footer ">
+
+                                <a class=" col-4 mr-5  btn btn-outline-danger" href="{% url 'contact:convert_lead' lead.id %}">
+                                    Convert Lead
+                                </a>
+
+
+                    <button type="submit" class="btn  col-3    btn-outline-primary mx-3  ">Update</button>
+
+                    <a href="{% url 'contact:list_lead' %}" class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                </div>
+                </div>
+                    </div>
+                </div>
+            </form>
+            <!-- /.card -->
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

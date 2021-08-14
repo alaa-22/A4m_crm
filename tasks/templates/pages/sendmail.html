@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+    <section class="content">
+
+
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">Compose New Message</h3>
+            </div>
+            <!-- /.card-header -->
+            <form action="#" method="POST">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Contact </label>
+                        {% render_field eform.contact_person class="form-control custom-select" %}
+                        {% if eform.contact_person.errors %}
+                            {{ eform.contact_person.errors }}
+                        {% endif %}
+
+                    </div>
+                    <div class="form-group">
+                        {% render_field eform.subject class="form-control " placeholder="Subject:" %}
+                        {% if eform.subject.errors %}
+                            {{ eform.subject.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>About Product</label>
+                        {% render_field eform.about_product class="form-control " placeholder="About product" %}
+                        {% if eform.about_product.errors %}
+                            {{ eform.about_product.errors }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% render_field eform.message class="form-control " placeholder="message:" style="height: 200px" %}
+                        {% if eform.message.errors %}
+                            {{ eform.message.errors }}
+                        {% endif %}
+                    </div>
+                    <!--<div class="form-group">
+                        <div class="btn btn-default btn-file">
+                            <i class="fas fa-paperclip"></i> Attachment
+                            {% render_field eform.file %}
+                            {% if eform.file.errors %}
+                                {{ eform.file.errors }}
+                            {% endif %}
+                        </div>
+                        <p class="help-block">Max. 32MB</p>
+                    </div>-->
+                </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
+                        </div>
+                        <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
+                    </div>
+                    <!-- /.card-footer -->
+            </form>
+        </div>
+
+    </section>
+{% endblock content %}

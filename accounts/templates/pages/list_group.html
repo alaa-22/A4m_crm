@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{%block content%}
+
+<section class="content">
+            <div class="container-fluid">
+                  <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Groups Table</h3>
+
+                    <div class="card-tools">
+                        <a href="{% url 'account:add_group' %}" class="btn btn-outline-primary">Add New</i></a>
+                    </div>
+
+                </div>
+                <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="">Name</th>
+                                <th width="5%">Edit</th>
+                                <th width="5%">Delete</th>
+
+                            </tr>
+                            </thead>
+                            <tr>
+                            {% for group in groups%}
+                            <tr>
+                                <td width="">{{group.id}}</td>
+                                <td width="">{{group.name}}</td>
+                                <td width="5%">
+                                    <a href="{% url 'account:edit_group' group.id %}" class="btn btn-primary"><i
+                                  class="fas fa-edit"></i></a>
+                                </td>
+                                <td width="5%">
+                                    <button href="{% url 'account:delete_group' group.id  %}" class="btn btn-danger"
+                               data-toggle="modal" data-target="#danger" ><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- /.card-body -->
+
+            </div>
+            <!-- /.card -->
+            </div>
+    </div>
+            </div><!-- /.container-fluid -->
+</section>
+{%endblock content%}

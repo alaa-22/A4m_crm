@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Reminder</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Reminder Name</label>
+                                    {% render_field taskform.task_name class="form-control" placeholder="Reminder name" %}
+                                    {% if taskform.task_name.errors %}
+                                        {{ taskform.task_name.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                                <div class="form-group col-md-12">
+                                    <label for=>Contact</label>
+                                    {% render_field taskform.contact_person class="form-control custom-select" placeholder="Username" %}
+                                    {% if taskform.contact_person.errors %}
+                                        {{ taskform.contact_person.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Description</label>
+                                    {% render_field taskform.description class="form-control " placeholder="Description" %}
+                                    {% if taskform.description.errors %}
+                                        {{ taskform.description.errors }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Date</label>
+                                    {% render_field taskform.date class="form-control " placeholder="Username" type="date" %}
+                                    {% if taskform.date.errors %}
+                                        {{ taskform.date.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+
+                                <a href="{% url 'tasks:Task list' %}"
+                                   class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+            </form>
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

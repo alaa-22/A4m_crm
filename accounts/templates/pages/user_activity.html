@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{%block content%}
+<section class="content">
+      <div class="container-fluid">
+        <!-- /.row -->
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"> All User Activities</h3>
+                <div class="card-tools">
+
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Activity type</th>
+                      <th>Company</th>
+                      <th>Contact</th>
+                         <th>Created at</th>
+                      <th>Details</th>
+
+
+
+                    </tr>
+                  {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.type  }}</td>
+                        <td>{{activity.company}}</td>
+                        <td>{{activity.contact_person }}</td>
+                        <td>{{activity.created_at}}</td>
+                        <td>{{activity.details}}</td>
+
+
+                        </tr>
+                        {%endfor%}
+
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            <div class="card-footer">
+                 {% if activities.has_other_pages %}
+                          <nav aria-label="Contacts Page Navigation">
+                            <ul class="pagination justify-content-center m-0">
+                                {% if activities.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{activities.previous_page_number}}"> previous </a></li>
+                                {% endif %}
+                                 {% for i in activities.paginator.page_range %}
+                                    {% if activities.number == i %}
+                                   <li class="page-item active"><a class="page-link" href="?page={{i}}"><span>{{i}}</span> </a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{i}}"><span>{{i}}</span> </a></li>
+                                {% endif %}
+                                {% endfor %}
+                              {% if activities.has_next %}
+                              <li class="page-item"><a class="page-link" href="?page={{activities.next_page_number}}">  next</a></li>
+                              {% endif %}
+                                </ul>
+                          </nav>
+
+{% endif %}
+                </div>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+
+      </div><!-- /.container-fluid -->
+    </section>
+{%endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

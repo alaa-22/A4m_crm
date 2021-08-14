@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{%block content%}
+<section class="content">
+    <div class="card ">
+        <div class="card-header">
+            <h3 class="card-title">Site settings</h3>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card-body row">
+                <div class="form-group col-md-12">
+                    <label>Company name</label>
+                    <input name="company_name" class="form-control" type="text" placeholder="company name">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Contact phone</label>
+                    <input name="contact_phone" class="form-control" type="text" placeholder="Contact phone" >
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Contact email</label>
+                    <input name="contact_email" class="form-control" type="email" placeholder="Contact email">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>contact fax</label>
+                    <input name="contact_fax" class="form-control" type="text" placeholder="contact fax">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Facebook link</label>
+                    <input name="facebook" class="form-control" type="text" placeholder="Facebook link">
+                </div><div class="form-group col-md-12">
+                    <label>Twitter link</label>
+                    <input name="twitter" class="form-control" type="text" placeholder="Twitter link">
+                </div><div class="form-group col-md-12">
+                    <label>Youtube link</label>
+                    <input name="youtube" class="form-control" type="text" placeholder="Youtube link">
+                </div>
+
+
+            </div>
+            <div class="row   card-footer  ">
+                <div class="col-5"></div>
+                <button type="submit" class="btn  col-3 mx-3   button_color  ">Add</button>
+                <a href="{% url 'account:list_user' %}" class="btn btn-outline-secondary  col-3  ">Cancel</a>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</section>
+{%endblock content%}

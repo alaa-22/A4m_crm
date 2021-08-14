@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>b5094df1-449d-4b3e-b641-794df47bb990</OriginalElement>
+  <nodes>
+    <node x="866.75" y="898.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_groups</node>
+    <node x="1895.75" y="426.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialaccount</node>
+    <node x="1952.25" y="865.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialtoken</node>
+    <node x="1486.75" y="327.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.company_companymodel</node>
+    <node x="182.0" y="415.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_admin_log</node>
+    <node x="1050.25" y="448.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.account_emailaddress</node>
+    <node x="623.0" y="898.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group_permissions</node>
+    <node x="1207.75" y="1249.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_notemodel</node>
+    <node x="63.375" y="88.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_content_type</node>
+    <node x="784.0" y="1505.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.sqlite_sequence</node>
+    <node x="0.0" y="1505.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.sqlite_master</node>
+    <node x="2725.75" y="470.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_site</node>
+    <node x="337.75" y="1216.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_sendemailmodel</node>
+    <node x="2589.4794520547944" y="898.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp_sites</node>
+    <node x="781.0" y="1183.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_taskmodel</node>
+    <node x="2518.75" y="437.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp</node>
+    <node x="578.0" y="1505.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_session</node>
+    <node x="164.0" y="1505.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_migrations</node>
+    <node x="2944.75" y="1238.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_whatsappmodel</node>
+    <node x="835.0" y="481.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group</node>
+    <node x="1400.75" y="766.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel</node>
+    <node x="1401.75" y="1227.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_activitymodel</node>
+    <node x="1363.75" y="0.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user</node>
+    <node x="364.0" y="1505.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.accounts_sitesettings</node>
+    <node x="2127.75" y="404.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.accounts_log</node>
+    <node x="2181.75" y="1227.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_meetingmodel</node>
+    <node x="1034.75" y="876.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.account_emailconfirmation</node>
+    <node x="1707.75" y="415.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_leadsmodel</node>
+    <node x="0.0" y="459.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_permission</node>
+    <node x="2322.75" y="415.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.accounts_profile</node>
+    <node x="2750.75" y="1227.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_callmodel</node>
+    <node x="393.0" y="898.0">b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_user_permissions</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_meetingmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="-43.5" y="-94.5" />
+      <point x="2225.25" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="-44.0" y="-182.5" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_meetingmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="43.5" y="-94.5" />
+      <point x="2312.25" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_callmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="-43.5" y="-94.5" />
+      <point x="2794.25" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.account_emailconfirmation" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.account_emailaddress" relationship="REFERENCES">
+      <point x="0.0" y="-72.5" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group_permissions" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_permission" relationship="REFERENCES">
+      <point x="-47.75" y="-50.5" />
+      <point x="670.75" y="745.0" />
+      <point x="522.9760273972602" y="745.0" />
+      <point x="522.9760273972602" y="735.0" />
+      <point x="81.0" y="735.0" />
+      <point x="0.0" y="61.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp_sites" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp" relationship="REFERENCES">
+      <point x="-55.0" y="-50.5" />
+      <point x="2644.4794520547944" y="745.0" />
+      <point x="2612.25" y="745.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_callmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="43.5" y="-94.5" />
+      <point x="2881.25" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_activitymodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="0.0" y="-94.5" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_whatsappmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="-44.0" y="-83.5" />
+      <point x="2988.75" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_taskmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="-43.5" y="-138.5" />
+      <point x="824.5" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_whatsappmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="44.0" y="-83.5" />
+      <point x="3076.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialtoken" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp" relationship="REFERENCES">
+      <point x="49.5" y="-83.5" />
+      <point x="2100.75" y="745.0" />
+      <point x="2612.25" y="745.0" />
+      <point x="0.0" y="83.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.accounts_log" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-116.5" />
+      <point x="2214.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_admin_log" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_content_type" relationship="REFERENCES">
+      <point x="-47.5" y="-105.5" />
+      <point x="229.5" y="302.0" />
+      <point x="147.375" y="302.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_activitymodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="-58.0" y="-94.5" />
+      <point x="1430.75" y="1152.0" />
+      <point x="1350.1455479452056" y="1152.0" />
+      <point x="1350.1455479452056" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialtoken" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialaccount" relationship="REFERENCES">
+      <point x="-49.5" y="-83.5" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_user_permissions" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="52.5" y="-50.5" />
+      <point x="550.5" y="735.0" />
+      <point x="533.4760273972603" y="735.0" />
+      <point x="533.4760273972603" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.accounts_profile" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-105.5" />
+      <point x="2410.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.account_emailaddress" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-72.5" />
+      <point x="1137.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialapp_sites" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_site" relationship="REFERENCES">
+      <point x="55.0" y="-50.5" />
+      <point x="2754.4794520547944" y="745.0" />
+      <point x="2798.25" y="745.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_groups" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group" relationship="REFERENCES">
+      <point x="-37.0" y="-50.5" />
+      <point x="903.75" y="745.0" />
+      <point x="902.0" y="745.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.socialaccount_socialaccount" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-94.5" />
+      <point x="2001.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_taskmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="43.5" y="-138.5" />
+      <point x="911.5" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_groups" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="37.0" y="-50.5" />
+      <point x="977.75" y="745.0" />
+      <point x="979.5" y="745.0" />
+      <point x="979.5" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.company_companymodel" relationship="REFERENCES">
+      <point x="44.0" y="-182.5" />
+      <point x="1532.75" y="745.0" />
+      <point x="1587.25" y="745.0" />
+      <point x="0.0" y="193.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_leadsmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-105.5" />
+      <point x="1791.75" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_sendemailmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="-44.75" y="-105.5" />
+      <point x="382.5" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.company_companymodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="0.0" y="-193.5" />
+      <point x="1587.25" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_permission" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_content_type" relationship="REFERENCES">
+      <point x="0.0" y="-61.5" />
+      <point x="81.0" y="302.0" />
+      <point x="147.375" y="302.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_sendemailmodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="44.75" y="-105.5" />
+      <point x="472.0" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.django_admin_log" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="47.5" y="-105.5" />
+      <point x="324.5" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_notemodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.contact_contactmodel" relationship="REFERENCES">
+      <point x="43.5" y="-72.5" />
+      <point x="1338.25" y="1162.0" />
+      <point x="1488.75" y="1162.0" />
+      <point x="0.0" y="182.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_activitymodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.company_companymodel" relationship="REFERENCES">
+      <point x="58.0" y="-94.5" />
+      <point x="1546.75" y="1152.0" />
+      <point x="1587.25" y="1152.0" />
+      <point x="0.0" y="193.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user_user_permissions" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_permission" relationship="REFERENCES">
+      <point x="-52.5" y="-50.5" />
+      <point x="445.5" y="745.0" />
+      <point x="522.9760273972602" y="745.0" />
+      <point x="522.9760273972602" y="735.0" />
+      <point x="81.0" y="735.0" />
+      <point x="0.0" y="61.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group_permissions" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_group" relationship="REFERENCES">
+      <point x="47.75" y="-50.5" />
+      <point x="766.25" y="745.0" />
+      <point x="902.0" y="745.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_notemodel" target="b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.auth_user" relationship="REFERENCES">
+      <point x="-43.5" y="-72.5" />
+      <point x="1251.25" y="302.0" />
+      <point x="1444.75" y="302.0" />
+      <point x="0.0" y="138.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.556440982624326" showDependencies="false" x="1391.7206848282544" y="1052.9545754860967" />
+  <SelectedNodes>
+    <node>b5094df1-449d-4b3e-b641-794df47bb990.TABLE:main.tasks_meetingmodel</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

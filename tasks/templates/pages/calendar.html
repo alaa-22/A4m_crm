@@ -1,0 +1,175 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Calendar</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/fullcalendar/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/fullcalendar-daygrid/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/fullcalendar-timegrid/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/fullcalendar-bootstrap/main.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'assets/dist/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        {%block navbar%}
+        {% include "nav.html" %}
+        {%endblock navbar%}
+        {%block sidebar%}
+            {% include "sidebar.html" %}
+        {%endblock sidebar%}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Calendar</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Calendar</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-body p-0">
+                                    <!-- THE CALENDAR -->
+                                    <div id="calendar" style="width: 100%; height: 150px"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+        </div>
+          {%block footer%}
+{% include "footer.html" %}
+{%endblock footer%}
+    </div>
+            <!-- /.content -->
+
+
+        <!-- /.content-wrapper -->
+
+
+
+
+ <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js '%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'assets/dist/js/adminlte.min.js '%}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'assets/dist/js/demo.js' %}"></script>
+<script src="{% static 'assets/dist/js/main.js' %}"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <script src="{% static 'assets/plugins/moment/moment.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar/main.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar-daygrid/main.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar-timegrid/main.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar-interaction/main.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar-bootstrap/main.min.js' %}"></script>
+    <!-- Page specific script -->
+    <script>
+        $(document).ready(function (){
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            //Date for the calendar events (dummy data)
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendarInteraction.Draggable;
+
+            var containerEl = document.getElementById('external-events');
+            var checkbox = document.getElementById('drop-remove');
+            var calendarEl = document.getElementById('calendar');
+
+            // initialize the external events
+            // -----------------------------------------------------------------
+
+
+
+            var calendar = new Calendar(calendarEl, {
+                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                'themeSystem': 'bootstrap',
+                //Random default events
+                events: [
+                    {% for  task in tasks%}
+                    {
+                    title: "{{task.task_name}}",
+                    start: new Date({{task.date.year}}, {{task.date.month}}-1, {{task.date.day}}),
+                    allDay:true,
+                    {% if task.task_type == "Email" %}
+                        backgroundColor: '#FF0000', //Blue
+                        borderColor: '#0073b7' //Blue
+                    {% elif task.task_type == "Whatsapp message"%}
+                        backgroundColor: '#FF0080', //Blue
+                        borderColor: '#0073b7' //Blue
+                    {% elif task.task_type == "Call"%}
+                        backgroundColor: '#FF0080', //Blue
+                        borderColor: '#0073b7'
+                    {% elif task.task_type == "Meet"%}
+                        backgroundColor: '#FFF', //Blue
+                        borderColor: '#0073b7'
+                        {% else %}
+                        backgroundColor: '#FFF', //Blue
+                        borderColor: '#0073b7'
+                        {% endif %}
+                },
+                 {% endfor%}
+                 ],
+                editable: false,
+                droppable: false, // this allows things to be dropped onto the calendar !!!
+
+            });
+
+            calendar.render();
+            // $('#calendar').fullCalendar()
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content ">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center" id="blah">
+                            {% if user.profile.avatar %}
+                                <img class="profile-user-img img-fluid img-circle mb-2" style="max-height: 150px"
+                                     id="avatar" src="{{ request.user.profile.avatar.url }}">
+                            {% else %}
+                                <img class="profile-user-img img-fluid img-circle mb-2" style="max-height: 150px"
+                                     id="avatar" src="https://via.placeholder.com/150">
+                            {% endif %}
+                            <button class="btn btn-primary d-block m-auto mt-2" id="upload-btn">Upload</button>
+                        </div>
+                        <h3 class="profile-username text-center"></h3>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"> Porfile </h3>
+                        <div class="card-tools">
+
+                        </div>
+                    </div>
+                    <form method="POST" class="col-12" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body row ">
+
+
+                            <div class="row col-md-5 m-3 form-group">
+                                <div class="col-md-12">
+                                    <label>Name *</label>
+                                </div>
+                                <div class="col-md-12">
+                                    {% render_field form.full_name class="form-control" placeholder="full name" %}
+                                    {% if form.full_name.errors %}
+                                        {{ form.full_name.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="row col-md-5 m-3 form-group">
+                                <div class="col-md-12">
+                                    <label>Email *</label>
+                                </div>
+                                <div class="col-md-12">
+                                    {% render_field form.email class="form-control" placeholder="Email" %}
+                                    {% if form.email.errors %}
+                                        {{ form.email.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+
+                            <div class="row col-md-5 m-3 form-group">
+                                <div class="col-md-12">
+                                    <label>Phone *</label>
+                                </div>
+                                <div class="col-md-12">
+                                    {% render_field form.phone class="form-control" placeholder="phone" %}
+                                    {% if form.phone.errors %}
+                                        {{ form.phone.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="row col-md-5 m-3 form-group">
+                                <div class="col-md-12">
+                                    <label>Date of Birth</label>
+                                </div>
+                                <div class="col-md-12">
+                                    {% render_field form.date_of_birth class="form-control" type="date" %}
+                                    {% if form.date_of_birth.errors %}
+                                        {{ form.date_of_birth.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row col-md-5 m-3 form-group">
+                                <div class="col-md-12">
+                                    <label>Address</label>
+                                </div>
+                                <div class="col-md-12">
+                                    {% render_field form.address class="form-control" placeholder="address" %}
+                                    {% if form.address.errors %}
+                                        {{ form.address.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row col-md-5 m-3 form-group ">
+
+                                <div class="col-md-12 col-xs-12">
+
+
+                                    {% render_field form.avatar class="form-control" id="imgInp" hidden="hidden" placeholder="full name" %}
+
+                                    {% if form.full_name.errors %}
+                                        {{ form.full_name.errors }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <a href="{% url 'account_change_password' %}" class="col-md-5">Change Password
+                            </a>
+
+                        </div>
+                        <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-md-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+                                <button type="reset" class="btn  col-3   btn-outline-primary  ">cancel</button>
+
+
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block js %}
+    <script>
+
+        $(document).ready(function () {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#avatar').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    var file = $('#imgInp')[0].files;
+                    var fd = new FormData();
+                    if (file.length > 0) {
+                        fd.append('avatar', file[0]);
+                        fd.append('csrfmiddlewaretoken', "{{ csrf_token }}")
+                    } else {
+                        alert("Please select a file.");
+                    }
+
+                }
+            }
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+            document.getElementById('upload-btn').addEventListener('click', openDialog);
+
+            function openDialog() {
+                document.getElementById('imgInp').click();
+            }
+        })
+    </script>
+{% endblock js %}
+
+
+
+

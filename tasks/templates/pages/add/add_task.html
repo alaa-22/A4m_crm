@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+
+            <form method="POST" action="" class="row">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Task</h3>
+                            <div class="card-tools">
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Task Name</label>
+                                    {% render_field taskform.task_name class="form-control" placeholder="Task name" %}
+                                    {% if taskform.task_name.errors %}
+                                        {{ taskform.task_name.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Assign To</label>
+                                    {% render_field taskform.Assign_to class="form-control custom-select" placeholder="Username" %}
+                                    {% if taskform.Assign_to.errors %}
+                                        {{ taskform.Assign_to.errors }}
+                                    {% endif %}                        </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Type</label>
+                                    {% render_field taskform.task_type class="form-control custom-select" placeholder="Username" %}
+                                    {% if taskform.task_type.errors %}
+                                        {{ taskform.task_type.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for=>Contact</label>
+                                    {% render_field taskform.contact_person class="form-control custom-select" placeholder="Username" %}
+                                    {% if taskform.contact_person.errors %}
+                                        {{ taskform.contact_person.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Description</label>
+                                    {% render_field taskform.description class="form-control " placeholder="Description" %}
+                                    {% if taskform.description.errors %}
+                                        {{ taskform.description.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Date</label>
+                                    {% render_field taskform.date class="form-control " type="date" %}
+                                    {% if taskform.date.errors %}
+                                        {{ taskform.date.errors }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Status</label>
+                                    {% render_field taskform.statue class="form-control " placeholder="Username" %}
+                                    {% if taskform.statue.errors %}
+                                        {{ taskform.statue.errors }}
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="col-12">
+                            <div class=" card-footer row">
+                                <div class="col-md-5"></div>
+                                <button type="submit" class="btn  col-3 mx-3   btn-outline-primary  ">Add</button>
+                                <a href="{% url 'tasks:Task list' %}"
+                                   class="btn btn-outline-secondary  col-3  ">Cancel</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+
+
+            </form>
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{%block content%}
+
+<section class="content">
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Filter</h3>
+                  </div>
+
+                      <form method="GET">
+                          <div class="card-body">
+                            <div class="form-group">
+                              <label>Username</label>
+                              <div class="input-group date" >
+                                  {% render_field myfilter.form.username class="form-control" placeholder="username" %}
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Email</label>
+                              <div class="input-group date" >
+                                  {% render_field myfilter.form.email class="form-control" placeholder="email" %}
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Date Joined</label>
+                              <div class="input-group date" >
+                                  {% render_field myfilter.form.date_joined class="form-control" type="date" %}
+                              </div>
+                            </div>
+                            </div>
+
+                             <div class="card-footer">
+
+                            <button  type="reset" class="btn btn-outline-secondary ">Reset</button>
+                            <button  type="submit" class="btn btn-outline-primary ">Submit</button>
+
+                             </div>
+                    <!-- /.form group -->
+                  </form>
+
+
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            <div class="col-md-9  ">
+         <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title"> All Users </h3>
+                        <div class="card-tools">
+                            <a href="{% url 'account:add_user' %}"
+                               class="btn btn-outline-primary ">Add New</a>
+                        </div>
+                    </div>
+             <div class="card-body">
+              <div class="row d-flex align-items-stretch ">
+                {% for user in users %}
+                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                  <div class="card bg-light">
+                    <div class="card-header text-muted border-bottom-0">
+                      {{user.username}}
+                    </div>
+                    <div class="card-body pt-0">
+                      <div class="row">
+                        <div class="col-7">
+                          <h2 class="lead"><b>{{user.first_name}} {{user.last_name}}</b></h2>
+                          <ul class="ml-4 mb-0 fa-ul text-muted">
+
+                            <li class="small"><span class="fa-li"><i class="fas fa-user-clock"></i></span> last login: {{user.last_login}}</li>
+                            <li class="small"><span class="fa-li"><i class="fas fa-users"></i></span> Group: {{user.groups.all.0}}</li>
+                          </ul>
+                        </div>
+                        <div class="col-5 text-center">
+                          {% if user.profile.avatar %}
+                          <img src="{{user.profile.avatar.url}}" alt="" class="img-circle img-fluid">
+                          {% else %}
+                                    <img class="img-circle" style="max-height: 70px" src="https://via.placeholder.com/128"
+                                    alt="">
+                          {% endif %}
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="text-right">
+                        <a href="{% url 'account:user_activity' user.id%}" class="btn btn-sm btn-outline-success">
+                          <i class="fas fa-user"></i> Activity
+                        </a>
+                        <a href="{% url 'account:profile' user.id %}" class="btn btn-sm btn-outline-primary ">
+                          <i class="fas fa-user"></i> Profile
+                        </a>
+                          <a href="{% url 'account:edit_user' user.id %}" class="btn btn-sm  btn-outline-info">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                        <button href="{% url 'account:delete_user' user.id %}" data-toggle="modal" data-target="#danger"  class="btn btn-sm btn-outline-danger">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor%}
+
+
+
+            <!-- /.container-fluid -->
+            </div><!-- /.container-fluid -->
+            </div>
+             <div class="card-footer">
+                 {% if users.has_other_pages %}
+                              <nav aria-label="Contacts Page Navigation">
+                                <ul class="pagination justify-content-center m-0">
+                                    {% if users.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{user.previous_page_number}}"> previous </a></li>
+                                    {% endif %}
+                                     {% for i in users.paginator.page_range %}
+                                        {% if users.number == i %}
+                                       <li class="page-item active"><a class="page-link" href="?page={{i}}"><span>{{i}}</span> </a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{i}}"><span>{{i}}</span> </a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                  {% if users.has_next %}
+                                  <li class="page-item"><a class="page-link" href="?page={{user.next_page_number}}">  next</a></li>
+                                  {% endif %}
+                                    </ul>
+                              </nav>
+
+    {%endif%}
+                    </div>
+                    </div>
+                    </div>
+        </div>
+     </div><!-- /.container-fluid -->
+</section>
+{%endblock content%}

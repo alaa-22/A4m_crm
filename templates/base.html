@@ -1,0 +1,57 @@
+{% load static %}
+{%block head%}
+        {% include "head.html" %}
+    {%endblock head%}
+{% ifequal request.GET.pagetype 'print' %}
+
+{% else %}
+    <body class="hold-transition sidebar-mini layout-fixed " style="background-color: #F4F6F9">
+    {%block navbar%}
+        {% include "nav.html" %}
+    {%endblock navbar%}
+    {%block sidebar%}
+        {% include "sidebar.html" %}
+    {%endblock sidebar%}
+
+{% endifequal %}
+ <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+
+
+
+
+
+    {%block content%}
+    {%endblock content%}
+
+
+
+
+
+{% ifequal request.GET.pagetype 'print' %}
+{% else %}
+{%block footer%}
+{% include "footer.html" %}
+{%endblock footer%}
+{% endifequal %}
+
+{%block scripts%}
+{% include "scripts.html" %}
+{%endblock scripts%}
+{%block js%}
+{%endblock js%}
+     </body>
+
+</html>
+
+
+

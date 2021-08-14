@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h3 class="card-title">log info</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for=>User</label>
+                                    <input type="text" class="form-control" value='{{ log.user }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Action</label>
+                                    <input type="text" class="form-control" value='{{ log.action }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Url</label>
+                                    <input type="text" class="form-control" value='{{ log.url }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Ip Address</label>
+                                    <input type="text" class="form-control" value='{{ log.ip_address }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Model Name</label>
+                                    <input type="text" class="form-control" value='{{ log.model_name }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>record Id</label>
+                                    <input type="text" class="form-control" value='{{ log.record_id }}'>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Old Data</label>
+                                    {% if  log.old_data is  not None %}
+                                        <textarea readonly class="form-control" name="" id="" cols="30"
+                                                  rows="10">{{ log.old_data|safe }}</textarea>
+                                    {% else %}
+                                        <input type="text" class="form-control" value='{{ log.old_data }}'>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>New Data</label>
+                                    {% if  log.new_data is  not None %}
+                                        <textarea readonly class="form-control" name="" id="" cols="30"
+                                                  rows="10">{{ log.new_data|safe }}</textarea>
+                                    {% else %}
+                                        <input type="text" class="form-control" value='{{ log.new_data }}'>
+                                    {% endif %}                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+
+{% endblock content %}
